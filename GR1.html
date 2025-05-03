@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Âge moyen des employés par département</title>
+  <!-- Importer Plotly.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.18.2/plotly.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #chart {
+      width: 600px;
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const data = [{
+        x: ['Développement', 'Finances', 'Ressources Humaines', 'Soutien', 'Ventes'],
+        y: [32, 34, 40, 35, 29],
+        type: 'bar',
+        marker: {
+          color: ['#3366cc', '#ffcc33', '#33cc33', '#ff6633', '#9966cc']
+        }
+      }];
+      
+      const layout = {
+        title: 'Âge moyen des employés par département',
+        font: { family: 'Arial, sans-serif', size: 14 },
+        xaxis: { title: '' },
+        yaxis: { title: 'Âge', range: [0, 45] },
+        margin: { t: 50, b: 50, l: 50, r: 50 },
+        height: 400,
+        width: 600,
+        bargap: 0.3
+      };
+      
+      Plotly.newPlot('chart', data, layout);
+    });
+  </script>
+</body>
+</html>

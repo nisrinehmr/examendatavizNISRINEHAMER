@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Nombre de tâches par année selon le département</title>
+  <!-- Importer Plotly.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.18.2/plotly.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+    #chart {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Années sur l'axe X
+      const years = ['2020', '2021', '2022', '2023', '2024'];
+      
+      // Données extraites de l'image pour chaque département
+      const developpement = {
+        name: 'Développement',
+        x: years,
+        y: [250, 290, 340, 380, 420],
+        type: 'scatter',
+        mode: 'lines',
+        line: {
+          color: '#4AAD52',
+          width: 3
+        }
+      };
+      
+      const finances = {
+        name: 'Finances',
+        x: years,
+        y: [350, 380, 450, 400, 370],
+        type: 'scatter',
+        mode: 'lines',
+        line: {
+          color: '#FFD966',
+          width: 3
+        }
+      };
+      
+      const ressourcesHumaines = {
+        name: 'Ressources Humaines',
+        x: years,
+        y: [130, 150, 170, 200, 180],
+        type: 'scatter',
+        mode: 'lines',
+        line: {
+          color: '#FF0000',
+          width: 3
+        }
+      };
+      
+      const soutien = {
+        name: 'Soutien',
+        x: years,
+        y: [530, 500, 470, 450, 480],
+        type: 'scatter',
+        mode: 'lines',
+        line: {
+          color: '#4F81BD',
+          width: 3
+        }
+      };
+      
+      const data = [developpement, finances, ressourcesHumaines, soutien];
+      
+      const layout = {
+        title: {
+          text: 'Nombre de tâches par année selon le département',
+          font: {
+            size: 16,
+            color: '#333333'
+          },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        font: { 
+          family: 'Arial, sans-serif', 
+          size: 12
+        },
+        xaxis: { 
+          title: {
+            text: 'YEARS',
+            font: {
+              size: 12,
+              color: '#333333'
+            }
+          },
+          tickfont: {
+            size: 12
+          }
+        },
+        yaxis: { 
+          title: '',
+          range: [0, 600],
+          tickfont: {
+            size: 12
+          },
+          gridcolor: '#E5E5E5',
+          gridwidth: 1
+        },
+        margin: { t: 60, b: 80, l: 50, r: 50 },
+        height: 450,
+        width: 650,
+        legend: {
+          orientation: 'h',
+          yanchor: 'bottom',
+          y: -0.2,
+          xanchor: 'center',
+          x: 0.5,
+          font: {
+            size: 12
+          },
+          bgcolor: 'rgba(255, 255, 255, 0.5)',
+          bordercolor: 'rgba(0, 0, 0, 0)'
+        },
+        plot_bgcolor: 'white',
+        paper_bgcolor: 'white',
+        showlegend: true
+      };
+      
+      Plotly.newPlot('chart', data, layout, {responsive: true, displayModeBar: false});
+    });
+  </script>
+</body>
+</html>

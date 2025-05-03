@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Nombre de tâches (selon l'état) de chaque tranche d'âge d'employés</title>
+  <!-- Importer Plotly.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.18.2/plotly.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+    #chart {
+      width: 700px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Données exactes extraites de l'image
+      const ageGroups = ['20-29', '30-39', '40-49', '50-59'];
+      
+      const enCours = {
+        name: 'En cours',
+        x: ageGroups,
+        y: [90, 100, 60, 100],
+        type: 'bar',
+        marker: {
+          color: '#4F81BD'
+        }
+      };
+      
+      const termine = {
+        name: 'Terminé',
+        x: ageGroups,
+        y: [140, 160, 130, 80],
+        type: 'bar',
+        marker: {
+          color: '#F79646'
+        }
+      };
+      
+      const enAttente = {
+        name: 'En attente',
+        x: ageGroups,
+        y: [120, 180, 140, 90],
+        type: 'bar',
+        marker: {
+          color: '#A5A5A5'
+        }
+      };
+      
+      const data = [enCours, termine, enAttente];
+      
+      const layout = {
+        title: {
+          text: 'Nombre de tâches (selon l\'état) de chaque<br>tranche d\'âge d\'employés',
+          font: {
+            size: 14,
+            color: '#333333'
+          },
+          x: 0.01,
+          xanchor: 'left',
+          y: 0.98
+        },
+        font: { 
+          family: 'Arial, sans-serif', 
+          size: 12
+        },
+        xaxis: { 
+          title: '',
+          tickangle: 0,
+          tickfont: {
+            size: 12
+          },
+          fixedrange: true
+        },
+        yaxis: { 
+          title: '',
+          range: [0, 200],
+          tickfont: {
+            size: 12
+          },
+          gridcolor: '#E5E5E5',
+          gridwidth: 1,
+          zeroline: true,
+          zerolinecolor: '#E5E5E5',
+          zerolinewidth: 1,
+          fixedrange: true
+        },
+        margin: { t: 70, b: 50, l: 50, r: 20 },
+        height: 400,
+        width: 600,
+        barmode: 'group',
+        bargap: 0.15,
+        bargroupgap: 0.1,
+        legend: {
+          orientation: 'v',
+          yanchor: 'top',
+          y: 0.99,
+          xanchor: 'right',
+          x: 0.99,
+          bgcolor: 'rgba(255, 255, 255, 0)',
+          bordercolor: 'rgba(255, 255, 255, 0)',
+          font: {
+            size: 11
+          }
+        },
+        plot_bgcolor: 'white',
+        paper_bgcolor: 'white',
+        showlegend: true
+      };
+      
+      Plotly.newPlot('chart', data, layout, {responsive: true, displayModeBar: false});
+    });
+  </script>
+</body>
+</html>

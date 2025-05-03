@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Graphique des Tâches</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #chart {
+      width: 80%;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h3>Nombre de tâches par Département (avec sélection dynamique par année)</h3>
+  <div style="text-align: right; margin-right: 10%; font-size: 14px;">2020</div>
+  <div id="chart"></div>
+
+  <script>
+    const data = [{
+      x: ['Développement', 'Finances', 'Ressources Humaines', 'Soutien'],
+      y: [270, 160, 100, 60],
+      type: 'bar',
+      marker: {
+        color: ['#1f77b4', '#ffcc33', '#5cb85c', '#d9534f']
+      }
+    }];
+
+    const layout = {
+      yaxis: {
+        title: 'N° de tâches'
+      },
+      xaxis: {
+        tickangle: -20
+      },
+      legend: {
+        orientation: 'h',
+        y: -0.2
+      },
+      margin: {
+        t: 40
+      },
+      showlegend: false
+    };
+
+    Plotly.newPlot('chart', data, layout);
+  </script>
+
+</body>
+</html>
